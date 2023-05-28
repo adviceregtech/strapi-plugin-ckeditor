@@ -337,7 +337,9 @@ const CKEDITOR_BASE_CONFIG_FOR_PRESETS = {
         window.CKEditor5.autoformat.Autoformat,
         window.CKEditor5.basicStyles.Bold,
         window.CKEditor5.basicStyles.Italic,
+        window.CKEditor5.basicStyles.Underline,
         window.CKEditor5.blockQuote.BlockQuote,
+        window.CKEditor5.basicStyles.Code,
         window.CKEditor5.codeBlock.CodeBlock,
         window.CKEditor5.essentials.Essentials,
         window.CKEditor5.heading.Heading,
@@ -352,6 +354,7 @@ const CKEDITOR_BASE_CONFIG_FOR_PRESETS = {
         window.CKEditor5.list.List,
         window.CKEditor5.mediaEmbed.MediaEmbed,
         window.CKEditor5.paragraph.Paragraph,
+        window.CKEditor5.removeFormat.RemoveFormat,
         window.CKEditor5.pasteFromOffice.PasteFromOffice,
         window.CKEditor5.table.Table,
         window.CKEditor5.table.TableToolbar,
@@ -361,10 +364,7 @@ const CKEDITOR_BASE_CONFIG_FOR_PRESETS = {
         StrapiMediaLib
     ],
     toolbar: [
-        'paragraph',
-        'heading1',
-        'heading2',
-        'heading3',
+        'heading',
         '|',
         'bold',
         'italic',
@@ -382,8 +382,7 @@ const CKEDITOR_BASE_CONFIG_FOR_PRESETS = {
         'codeBlock',
         '|',
         'undo',
-        'redo',
-        'fullScreen'
+        'redo'
     ],
     heading: {
         options: [
