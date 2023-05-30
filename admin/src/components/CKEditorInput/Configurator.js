@@ -331,6 +331,75 @@ const CKEDITOR_BASE_CONFIG_FOR_PRESETS = {
       columns: 5,
       documentColors: 10,
     },
+  },
+  sami: {
+    plugins: [
+        window.CKEditor5.autoformat.Autoformat,
+        window.CKEditor5.basicStyles.Bold,
+        window.CKEditor5.basicStyles.Italic,
+        window.CKEditor5.basicStyles.Underline,
+        window.CKEditor5.blockQuote.BlockQuote,
+        window.CKEditor5.basicStyles.Code,
+        window.CKEditor5.codeBlock.CodeBlock,
+        window.CKEditor5.essentials.Essentials,
+        window.CKEditor5.heading.Heading,
+        window.CKEditor5.image.Image,
+        window.CKEditor5.image.ImageCaption,
+        window.CKEditor5.image.ImageStyle,
+        window.CKEditor5.image.ImageToolbar,
+        window.CKEditor5.image.ImageUpload,
+        window.CKEditor5.indent.Indent,
+        window.CKEditor5.link.Link,
+        window.CKEditor5.link.LinkImage,
+        window.CKEditor5.list.List,
+        window.CKEditor5.mediaEmbed.MediaEmbed,
+        window.CKEditor5.paragraph.Paragraph,
+        window.CKEditor5.removeFormat.RemoveFormat,
+        window.CKEditor5.pasteFromOffice.PasteFromOffice,
+        window.CKEditor5.table.Table,
+        window.CKEditor5.table.TableToolbar,
+        window.CKEditor5.table.TableColumnResize,
+        window.CKEditor5.table.TableCaption,
+        window.CKEditor5.wordCount.WordCount,
+        StrapiMediaLib
+    ],
+    toolbar: [
+        'heading',
+        '|',
+        'bold',
+        'italic',
+        'underline',
+        'removeFormat',
+        '|',
+        'bulletedList',
+        'numberedList',
+        '|',
+        'StrapiMediaLib',
+        'blockQuote',
+        'link',
+        '|',
+        'code',
+        'codeBlock',
+        '|',
+        'undo',
+        'redo'
+    ],
+    heading: {
+        options: [
+            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+            { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+            { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+            { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+            { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' }
+        ]
+    },
+    image: {
+        toolbar: [],
+        resizeOptions: []
+    },
+    table: {
+        contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableCellProperties', 'tableProperties', 'toggleTableCaption']
+    }
   }
 };
 
@@ -361,6 +430,9 @@ export default class Configurator {
   }
 
   _getBaseConfig() {
+    return CKEDITOR_BASE_CONFIG_FOR_PRESETS.sami;
+    // skip bellow, force our preset
+    
     const presetName = this.fieldConfig.options.preset;
 
     switch ( presetName ) {
