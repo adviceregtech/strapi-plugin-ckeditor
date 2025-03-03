@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Flex } from '@strapi/design-system';
-import { Field } from '@strapi/design-system/Field';
+import { Flex, Field } from '@strapi/design-system';
 import PropTypes from "prop-types";
 
 import { getGlobalStyling } from './GlobalStyling';
