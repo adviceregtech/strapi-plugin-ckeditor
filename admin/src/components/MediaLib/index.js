@@ -1,10 +1,19 @@
 import React from 'react';
-import { prefixFileUrlWithBackendUrl, useLibrary } from '@strapi/helper-plugin';
 import PropTypes from 'prop-types';
+import { useStrapiApp } from '@strapi/strapi/admin';
+
+// Deprecated in Strapi v5
+// https://docs-next.strapi.io/dev-docs/migration/v4-to-v5/guides/helper-plugin#prefixfileurlwithbackendurl
+// Original code:
+// https://github.com/strapi/strapi/blob/v4.25.2/packages/core/helper-plugin/src/utils/prefixFileUrlWithBackendUrl.ts
+function prefixFileUrlWithBackendUrl ( fileURL ) {
+  return !!fileURL && fileURL.startsWith('/') ? `${ window.strapi.backendURL }${ fileURL }` : fileURL;
+}
 
 const MediaLib = ( { isOpen, onChange, onToggle } ) => {
-  const { components } = useLibrary();
+  const { components } = useStrapiApp( 'library', app => app );
   const MediaLibraryDialog = components[ 'media-library' ];
+
 
   const handleSelectAssets = files => {
     const formattedFiles = files.map(f => {
@@ -36,12 +45,6 @@ const MediaLib = ( { isOpen, onChange, onToggle } ) => {
   return(
     <MediaLibraryDialog onClose={ onToggle } onSelectAssets={ handleSelectAssets } />
   );
-};
-
-MediaLib.defaultProps = {
-  isOpen: false,
-  onChange: () => {},
-  onToggle: () => {},
 };
 
 MediaLib.propTypes = {

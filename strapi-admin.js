@@ -1,3 +1,4 @@
 'use strict';
+import admin from './admin/src/index';
 
-module.exports = require('./admin/src').default;
+export default admin;
