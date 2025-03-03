@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Stack } from '@strapi/design-system/Stack';
-import { Field, FieldHint, FieldError, FieldLabel } from '@strapi/design-system/Field';
+import { Flex } from '@strapi/design-system';
+import { Field } from '@strapi/design-system/Field';
 import PropTypes from "prop-types";
 
 import { getGlobalStyling } from './GlobalStyling';
@@ -61,22 +61,22 @@ const CKEditorInput = ({
   };
 
   return (
-    <Field
+    <Field.Root
       name= {name }
       id={ name }
       // GenericInput calls formatMessage and returns a string for the error
       error={ error }
       hint={ description && formatMessage( description ) }
     >
-      <Stack spacing={ 1 }>
-        <FieldLabel action={ labelAction } required={ required }>
-          { formatMessage( intlLabel ) }
-        </FieldLabel>
+      <Flex spacing={ 1 } alignItems="normal" style={ { 'flexDirection': 'column' } }>
+        <Field.Label action={ labelAction } required={ required }>
+          { intlLabel ? formatMessage( intlLabel ) : name }
+        </Field.Label>
         <GlobalStyling />
         <CKEditor
           editor={ window.CKEditor5.editorClassic.ClassicEditor }
           disabled={ disabled }
-          data={ value }
+          data={ value ?? '' }
           onReady={ ( editor ) => {
             const wordCountPlugin = editor.plugins.get( 'WordCount' );
             const wordCountWrapper = wordCounter.current;
@@ -101,11 +101,11 @@ const CKEditorInput = ({
           config={ editorConfig }
         />
         <div ref={ wordCounter }></div>
-        <FieldHint />
-        <FieldError />
-      </Stack>
+        <Field.Hint />
+        <Field.Error />
+      </Flex>
       <MediaLib isOpen={ mediaLibVisible } onChange={ handleChangeAssets } onToggle={ handleToggleMediaLib } />
-    </Field>
+    </Field.Root>
   );
 };
 
